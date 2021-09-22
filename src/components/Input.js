@@ -24,12 +24,15 @@ export default function Input() {
   const powerToNineum = data.Power / 200;
 
   // formulas
-  const totalAvailablePower = Math.round(globalPowerRegen * (data.TimeHorizon * 1440));
+  const totalAvailablePower = Math.round(
+    globalPowerRegen * (data.TimeHorizon * 1440)
+  );
   const minedNineumTotal = Math.round(
     totalAvailablePower * staticMiningEfficiency * powerToNineum
   );
   const earnedNineumCalc =
-    ((data.UsersSpendingPower * (data.AveragePowerSpentByUsers - 200)) / 200)* data.TimeHorizon;
+    ((data.UsersSpendingPower * (data.AveragePowerSpentByUsers - 200)) / 200) *
+    data.TimeHorizon;
   // no negative values for earned nineum
   const earnedNineum = earnedNineumCalc < 0 ? 0 : earnedNineumCalc;
   const totalNineum = minedNineumTotal + earnedNineum;
@@ -72,23 +75,24 @@ export default function Input() {
   const mythicalValue = (data.Price * (commonOdds / mythicalOdds)).toFixed(2);
 
   // Total $ earned by rarity
-  const commonEarned = (commonValue * common).toFixed(2);
-  const nineEarned = (nineValue * nine).toFixed(2);
-  const uncommonEarned = (uncommonValue * uncommon).toFixed(2);
-  const rareEarned = (rareValue * rare).toFixed(2);
-  const epicEarned = (epicValue * epic).toFixed(2);
-  const legendaryEarned = (legendaryValue * legendary).toFixed(2);
-  const mythicalEarned = (mythicalValue * mythical).toFixed(2);
+  const commonEarned = parseFloat((commonValue * common).toFixed(2));
+  const nineEarned = parseFloat((nineValue * nine).toFixed(2));
+  const uncommonEarned = parseFloat((uncommonValue * uncommon).toFixed(2));
+  const rareEarned = parseFloat((rareValue * rare).toFixed(2));
+  const epicEarned = parseFloat((epicValue * epic).toFixed(2));
+  const legendaryEarned = parseFloat((legendaryValue * legendary).toFixed(2));
+  const mythicalEarned = parseFloat((mythicalValue * mythical).toFixed(2));
 
   // Total Earned
-  const totalEarned =
-    parseInt(commonEarned +
-    nineEarned +
-    uncommonEarned +
-    rareEarned +
-    epicEarned +
-    legendaryEarned +
-    mythicalEarned).toFixed(2);
+  const totalEarned = (
+    commonEarned +
+      nineEarned +
+      uncommonEarned +
+      rareEarned +
+      epicEarned +
+      legendaryEarned +
+      mythicalEarned
+  )
 
   return (
     <Container style={{ color: "aqua", fontFamily: "Orbitron" }}>
@@ -172,7 +176,7 @@ export default function Input() {
           {/* <p>Mined Nineum Total: {minedNineumTotal}</p> */}
           <p>Earned Nineum: {earnedNineum}</p>
           <p>Total Nineum: {totalNineum}</p>
-{/* 
+          {/* 
           <p>Power to Nineum Ratio: {powerToNineum}</p> */}
           <p>Total Power: {totalPower}</p>
         </Col>
