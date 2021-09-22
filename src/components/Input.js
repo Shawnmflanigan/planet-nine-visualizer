@@ -92,7 +92,7 @@ export default function Input() {
       epicEarned +
       legendaryEarned +
       mythicalEarned
-  )
+  ).toFixed(2)
 
   return (
     <Container style={{ color: "aqua", fontFamily: "Orbitron" }}>
